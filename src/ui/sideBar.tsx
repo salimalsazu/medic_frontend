@@ -22,6 +22,7 @@ const SideBar = () => {
       onCollapse={(value) => setCollapsed(value)}
       width={280}
       style={{
+        background: "white",
         overflow: "auto",
         height: "100vh",
         position: "sticky",
@@ -32,7 +33,7 @@ const SideBar = () => {
     >
       <div
         style={{
-          color: "white",
+          color: "black",
           fontSize: "2rem",
           textAlign: "center",
           fontWeight: "bold",
@@ -40,10 +41,10 @@ const SideBar = () => {
           padding: "10px 0px",
         }}
       >
-        UMS
+        U-Medic
       </div>
       <Menu
-        theme="dark"
+        theme="light"
         defaultSelectedKeys={["1"]}
         mode="inline"
         items={sidebarItems(role)}
