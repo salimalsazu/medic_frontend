@@ -26,12 +26,16 @@ export const sidebarItems = (role: string) => {
       icon: <UsergroupAddOutlined />,
       children: [
         {
-          label: <Link href={`/${role}`}>Account Profile</Link>,
+          label: <Link href={`/dashboard/${role}`}>Account Profile</Link>,
           icon: <UserOutlined />,
           key: `/${role}/profile`,
         },
         {
-          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
+          label: (
+            <Link href={`/dashboard/${role}/change-password`}>
+              Change Password
+            </Link>
+          ),
           icon: <UsergroupDeleteOutlined />,
           key: `/${role}/change-password`,
         },
@@ -42,12 +46,12 @@ export const sidebarItems = (role: string) => {
   const userSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {
-      label: <Link href={`/${role}/booking-list`}>Booking List</Link>,
+      label: <Link href={`/dashboard/${role}/booking-list`}>Booking List</Link>,
       icon: <BookOutlined />,
       key: `/${role}/booking-list`,
     },
     {
-      label: <Link href={`/${role}/reviews`}>My Reviews</Link>,
+      label: <Link href={`/dashboard/${role}/reviews`}>My Reviews</Link>,
       icon: <PlusSquareOutlined />,
       key: `/${role}/reviews`,
     },
@@ -62,12 +66,12 @@ export const sidebarItems = (role: string) => {
       icon: <UserSwitchOutlined />,
       children: [
         {
-          label: <Link href={`/add-user`}>Add user</Link>,
+          label: <Link href={`/dashboard/user/add-user`}>Add user</Link>,
           key: `/add-user`,
           icon: <UserAddOutlined />,
         },
         {
-          label: <Link href={`/user-list`}>User List</Link>,
+          label: <Link href={`/dashboard/user/user-list`}>User List</Link>,
           key: `/user-list`,
           icon: <UsergroupAddOutlined />,
         },
@@ -79,12 +83,16 @@ export const sidebarItems = (role: string) => {
       icon: <CustomerServiceOutlined />,
       children: [
         {
-          label: <Link href={`/add-service`}>Add Service</Link>,
+          label: (
+            <Link href={`/dashboard/service/add-service`}>Add Service</Link>
+          ),
           key: `/add-service`,
           icon: <FolderAddOutlined />,
         },
         {
-          label: <Link href={`/service-list`}>Service List</Link>,
+          label: (
+            <Link href={`/dashboard/service/service-list`}>Service List</Link>
+          ),
           key: `/service-list`,
           icon: <CloudServerOutlined />,
         },
@@ -96,12 +104,16 @@ export const sidebarItems = (role: string) => {
       icon: <DiffOutlined />,
       children: [
         {
-          label: <Link href={`/add-booking`}>Add Booking</Link>,
+          label: (
+            <Link href={`/dashboard/booking/add-booking`}>Add Booking</Link>
+          ),
           key: `/add-service`,
           icon: <FileAddOutlined />,
         },
         {
-          label: <Link href={`/booking-list`}>Booking List</Link>,
+          label: (
+            <Link href={`/dashboard/booking/booking-list`}>Booking List</Link>
+          ),
           key: `/booking-list`,
           icon: <FileSearchOutlined />,
         },
@@ -113,22 +125,22 @@ export const sidebarItems = (role: string) => {
       icon: <TableOutlined />,
       children: [
         {
-          label: <Link href={`/add-blog`}>Add Blog</Link>,
+          label: <Link href={`/dashboard/blog/add-blog`}>Add Blog</Link>,
           key: `/add-blog`,
           icon: <BookOutlined />,
         },
         {
-          label: <Link href={`/blog-list`}>Blog List</Link>,
+          label: <Link href={`/dashboard/blog/blog-list`}>Blog List</Link>,
           key: `/blog-list`,
           icon: <BookOutlined />,
         },
         {
-          label: <Link href={`/add-faq`}>Add FAQ</Link>,
+          label: <Link href={`/dashboard/faq/add-faq`}>Add FAQ</Link>,
           key: `/add-faq`,
           icon: <BookOutlined />,
         },
         {
-          label: <Link href={`/faq-list`}>FAQ List</Link>,
+          label: <Link href={`/dashboard/faq/faq-list`}>FAQ List</Link>,
           key: `/faq-list`,
           icon: <BookOutlined />,
         },
@@ -144,12 +156,12 @@ export const sidebarItems = (role: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/add-admin`}>add Admin</Link>,
+          label: <Link href={`/dashboard/admin/add-admin`}>add Admin</Link>,
           icon: <TableOutlined />,
           key: `/add-admin`,
         },
         {
-          label: <Link href={`/admin-list`}>Admin List </Link>,
+          label: <Link href={`/dashboard/admin/admin-list`}>Admin List </Link>,
           icon: <TableOutlined />,
           key: `/admin-list`,
         },
@@ -160,7 +172,9 @@ export const sidebarItems = (role: string) => {
   const doctorSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {
-      label: <Link href={`/booking-list`}>Booking Lists</Link>,
+      label: (
+        <Link href={`/dashboard/${role}/booking-list`}>Booking Lists</Link>
+      ),
       icon: <TableOutlined />,
       key: `/booking-list`,
     },

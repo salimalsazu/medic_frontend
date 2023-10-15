@@ -6,12 +6,13 @@ import {
   ReloadOutlined,
 } from "@ant-design/icons";
 
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import dayjs from "dayjs";
 import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import UMTable from "@/ui/UMtable";
+import ActionBar from "@/ui/ActionBar";
 
 const UserList = () => {
   const query: Record<string, any> = {};
@@ -165,7 +166,7 @@ const UserList = () => {
         ]}
       />
 
-      {/* <ActionBar title="Course List">
+      <ActionBar title="Course List">
         <Input
           type="text"
           size="large"
@@ -178,7 +179,7 @@ const UserList = () => {
           }}
         />
         <div>
-          <Link href="/admin/course/create">
+          <Link href="/user-list">
             <Button type="primary">Create</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
@@ -191,7 +192,7 @@ const UserList = () => {
             </Button>
           )}
         </div>
-      </ActionBar> */}
+      </ActionBar>
 
       <UMTable
         // loading={isLoading}
