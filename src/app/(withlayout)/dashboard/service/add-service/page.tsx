@@ -7,6 +7,7 @@ import FormInput from "@/components/Forms/FormInput";
 // import { SelectOptions } from "@/components/Forms/FormSelectField";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UploadImage from "@/ui/UploadImage";
+import UploadImageV2 from "@/ui/UploadImageV2";
 
 import { Button, Col, Row, message } from "antd";
 
@@ -42,13 +43,12 @@ const AddService = () => {
     //   message.error(err.message);
     // }
   };
-  const base = "admin";
   return (
     <div>
       <UMBreadCrumb
         items={[
-          { label: `${base}`, link: `/${base}` },
-          { label: "course", link: `/${base}/course` },
+          { label: `dashboard`, link: `/dashboard` },
+          { label: "add-service", link: `/dashboard/add-service` },
         ]}
       />
       <h1 className="mt-10">Create Service</h1>

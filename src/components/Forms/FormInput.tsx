@@ -1,7 +1,5 @@
 "use client";
 
-
-import { getErrorMessageByPropertyName } from "@/utils/schema-validator";
 import { Input } from "antd";
 import { useFormContext, Controller } from "react-hook-form";
 interface IInput {
@@ -13,28 +11,35 @@ interface IInput {
   placeholder?: string;
   validation?: object;
   label?: string;
+  required?: boolean;
+  errors?: any;
+  disabled?: boolean;
 }
 
 const FormInput = ({
   name,
   type,
-  size = "large",
+  size,
   value,
   id,
   placeholder,
   validation,
   label,
+  required,
+  errors,
+  disabled,
 }: IInput) => {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext();
-
-  const errorMessage = getErrorMessageByPropertyName(errors, name);
+  const { control } = useFormContext();
 
   return (
-    <>
-     <p className="mb-2">{label ? label : null}</p>
+    <div className="flex flex-col">
+      {label && (
+        <div className="flex gap-1 items-center mb-1">
+          <label className={`${errors?.name ? "label_text2" : "label_text"}`}>
+            {label} {required && <span className="text-rose-500">*</span>}
+          </label>
+        </div>
+      )}
       <Controller
         control={control}
         name={name}
@@ -46,6 +51,8 @@ const FormInput = ({
               placeholder={placeholder}
               {...field}
               value={value ? value : field.value}
+              required={required}
+              disabled={disabled}
             />
           ) : (
             <Input
@@ -54,12 +61,14 @@ const FormInput = ({
               placeholder={placeholder}
               {...field}
               value={value ? value : field.value}
+              required={required}
+              disabled={disabled}
             />
           )
         }
       />
-      <small style={{ color: "red" }}>{errorMessage}</small>
-    </>
+      {errors?.name && <p className="text-rose-500">{label} is required</p>}
+    </div>
   );
 };
 

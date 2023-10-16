@@ -13,8 +13,7 @@ type UMTableProps = {
   onTableChange?: (pagination: any, filter: any, sorter: any) => void;
   showPagination?: boolean;
 };
-
-const UMTable = ({
+const TableList = ({
   loading = false,
   columns,
   dataSource,
@@ -37,7 +36,6 @@ const UMTable = ({
 
   return (
     <Table
-      style={{ alignItems: "center" }}
       loading={loading}
       columns={columns}
       dataSource={dataSource}
@@ -47,4 +45,4 @@ const UMTable = ({
   );
 };
 
-export default UMTable;
+export default TableList;

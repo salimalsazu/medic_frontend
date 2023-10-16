@@ -1,17 +1,39 @@
 "use client";
+
 import InputField from "@/components/InputField/InputField";
+import LoadingButton from "@/components/ui/button";
+import { useRegistrationMutation } from "@/redux/api/authApi";
+import { message } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
+    reset,
   } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
+
+  const [registration, { isLoading }] = useRegistrationMutation();
+
+  const router = useRouter();
+
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await registration(data).unwrap();
+      console.log(res);
+
+      if (res?.email || res?.userId) {
+        await router.push("/login");
+        await message.success("Registration success.Please Login");
+        reset();
+      }
+    } catch (error: any) {
+      console.error(error?.data?.message);
+      message.error(error?.data?.message);
+    }
   };
 
   return (
@@ -239,14 +261,34 @@ const RegisterPage = () => {
 
             <div>
               <InputField
-                label="Name"
-                name="name"
-                placeholder="Enter your name"
+                label="First Name"
+                name="firstName"
+                placeholder="Enter your first name"
                 register={register}
                 errors={errors}
                 required={true}
                 type="text"
               />
+              {errors?.firstName && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  First name is Required
+                </p>
+              )}
+
+              <InputField
+                label="Last Name"
+                name="lastName"
+                placeholder="Enter your Last name"
+                register={register}
+                errors={errors}
+                required={true}
+                type="text"
+              />
+              {errors?.lastName && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  Last name is Required
+                </p>
+              )}
 
               <InputField
                 label="Email"
@@ -257,6 +299,18 @@ const RegisterPage = () => {
                 required={true}
                 type="email"
               />
+
+              {errors?.email && errors?.email?.message === "" && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  Email is Required
+                </p>
+              )}
+              {errors?.email && errors?.email?.message && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  {errors?.email?.message as string}
+                </p>
+              )}
+
               <InputField
                 label="Password"
                 name="password"
@@ -266,6 +320,17 @@ const RegisterPage = () => {
                 required={true}
                 type="password"
               />
+              {errors?.password && errors?.password?.message === "" && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  Password is Required
+                </p>
+              )}
+              {errors?.password && errors?.password?.message && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  {errors?.password?.message as string}
+                </p>
+              )}
+
               {/* already have account */}
               <div className="flex items-center justify-end mt-2">
                 <Link
@@ -278,12 +343,16 @@ const RegisterPage = () => {
 
               <div className="flex -mx-3 my-[16px]">
                 <div className="w-full px-3 mb-5">
-                  <button
-                    type="submit"
-                    className="block w-full  mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
-                  >
-                    REGISTER NOW
-                  </button>
+                  {isLoading ? (
+                    <LoadingButton />
+                  ) : (
+                    <button
+                      type="submit"
+                      className="block w-full  mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                    >
+                      REGISTER NOW
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

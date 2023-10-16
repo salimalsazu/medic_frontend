@@ -18,6 +18,7 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import { USER_ROLE } from "@/constant/role";
+
 export const sidebarItems = (role: string) => {
   const defaultSidebarItems: MenuProps["items"] = [
     {
@@ -26,7 +27,9 @@ export const sidebarItems = (role: string) => {
       icon: <UsergroupAddOutlined />,
       children: [
         {
-          label: <Link href={`/dashboard/${role}`}>Account Profile</Link>,
+          label: (
+            <Link href={`/dashboard/${role}/my-profile`}>Account Profile</Link>
+          ),
           icon: <UserOutlined />,
           key: `/${role}/profile`,
         },

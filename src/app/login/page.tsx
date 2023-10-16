@@ -1,17 +1,39 @@
 "use client";
+
 import InputField from "@/components/InputField/InputField";
+import { useUserLoginMutation } from "@/redux/api/authApi";
+import { storeUserInfo } from "@/services/auth.services";
+
+import { Button, message } from "antd";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 const LoginPage = () => {
+  const [login, { isLoading, error }] = useUserLoginMutation();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
+
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await login(data).unwrap();
+      console.log(res);
+
+      if (res?.accessToken) {
+        storeUserInfo({ accessToken: res?.accessToken });
+        router.push("/dashboard");
+        message.success("User logged in successfully!");
+      }
+    } catch (error: any) {
+      console.error(error?.data?.message);
+      message.error(error?.data?.message);
+    }
   };
+
   return (
     <div className="min-w-screen min-h-screen bg-bgColor flex items-center justify-center px-5 py-5">
       <div
@@ -40,6 +62,18 @@ const LoginPage = () => {
                 required={true}
                 type="email"
               />
+
+              {errors?.email && errors?.email?.message === "" && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  Email is Required
+                </p>
+              )}
+              {errors?.email && errors?.email?.message && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  {errors?.email?.message as string}
+                </p>
+              )}
+
               <InputField
                 label="Password"
                 name="password"
@@ -49,11 +83,23 @@ const LoginPage = () => {
                 required={true}
                 type="password"
               />
+
+              {errors?.password && errors?.password?.message === "" && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  Password is Required
+                </p>
+              )}
+              {errors?.password && errors?.password?.message && (
+                <p className="text-rose-500 my-[2px] text-[12px]">
+                  {errors?.password?.message as string}
+                </p>
+              )}
+
               {/* already have account */}
               <div className="flex items-center justify-end mt-2">
                 <Link
-                  href="/register"
-                  className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
+                  href="/sign-up"
+                  className="inline-flex items-center font-bold text-[#47177e] hover:text-blue-700 hover:underline text-xs text-center"
                 >
                   <span className="ml-2">Don&apos;t have account?</span>
                 </Link>
@@ -61,12 +107,15 @@ const LoginPage = () => {
 
               <div className="flex -mx-3 my-[16px]">
                 <div className="w-full px-3 mb-5">
-                  <button
-                    type="submit"
-                    className="block w-full  mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                  <Button
+                    type="primary"
+                    className="w-full"
+                    size="large"
+                    htmlType="submit"
+                    // loading={isLoading}
                   >
                     Login
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

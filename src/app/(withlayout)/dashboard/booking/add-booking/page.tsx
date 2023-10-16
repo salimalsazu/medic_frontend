@@ -47,8 +47,8 @@ const AddBooking = () => {
 
   const slot = [
     { label: "10.00-10.20 AM", value: "10.00-10.20 AM" },
-    { label: "10.20-10.40 AM", value: "10.00-10.20 AM" },
-    { label: "10.40-11.00 AM", value: "10.00-10.20 AM" },
+    { label: "10.20-10.40 AM", value: "10.20-10.40 AM" },
+    { label: "10.40-11.00 AM", value: "10.40-11.00 AM" },
   ];
 
   const service = [

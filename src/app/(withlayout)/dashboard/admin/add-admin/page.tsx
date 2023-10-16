@@ -1,28 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { Button, Col, Row, message } from "antd";
-import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
-import UploadImage from "@/ui/UploadImage";
-import SpecializationFormField from "@/components/Forms/specializationField/SpecializationFormField";
+import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import UploadImage from "@/components/ui/UploadImage";
+import { Button, Col, Row, message } from "antd";
 
-const AddUserPage = () => {
+const AddAdminPage = () => {
   const roles = [
     {
-      label: "USER",
-      value: "USER",
+      label: "ADMIN",
+      value: "ADMIN",
     },
 
     {
-      label: "DOCTOR",
-      value: "DOCTOR",
+      label: "SUPER_ADMIN",
+      value: "SUPER_ADMIN",
     },
   ];
-
-  const [isRoleIsDoctor, setIsRoleIsDoctor] = useState(false);
 
   const adminOnSubmit = async (values: any) => {
     const obj = { ...values };
@@ -43,20 +39,18 @@ const AddUserPage = () => {
     }
   };
 
-  console.log(isRoleIsDoctor);
-
   const base = "super-admin";
   return (
-    <>
+    <div className="container rounded bg-white mt-1 mb-5 p-4">
       <UMBreadCrumb
         items={[
           { label: `${base}`, link: `/dashboard` },
-          { label: "add-user", link: `/dashboard/add-user` },
+          { label: "add-admin", link: `/dashboard/add-admin` },
         ]}
       />
       <div className="mt-3">
         <div className="mb-3">
-          <h1 className="text-lg text-black/70 font-bold">Create New User</h1>
+          <h1 className="text-lg text-black/70 font-bold">Create New ADMIN</h1>
         </div>
         <Form submitHandler={adminOnSubmit}>
           {/* faculty information */}
@@ -71,7 +65,7 @@ const AddUserPage = () => {
             <p
               style={{ fontSize: "18px", fontWeight: "500", margin: "5px 0px" }}
             >
-              User information
+              Profile information
             </p>
             <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
               <Col span={12} style={{ margin: "10px 0" }}>
@@ -80,6 +74,7 @@ const AddUserPage = () => {
                   label="Email"
                   type="email"
                   size="large"
+                  placeholder="Enter email"
                 />
               </Col>
               <Col span={12} style={{ margin: "10px 0" }}>
@@ -88,47 +83,20 @@ const AddUserPage = () => {
                   name="password"
                   label="Password"
                   size="large"
+                  placeholder="Enter password"
                 />
               </Col>{" "}
               <Col span={12} style={{ margin: "10px 0" }}>
                 <FormSelectField
-                  setIsRoleIsDoctor={setIsRoleIsDoctor}
                   name="role"
                   label="User Role"
                   options={roles}
                   size="large"
+                  placeholder="Select Role"
                 />
               </Col>
             </Row>
           </div>
-          {isRoleIsDoctor && (
-            <div
-              style={{
-                border: "1px solid #d9d9d9",
-                borderRadius: "5px",
-                padding: "15px",
-                marginBottom: "10px",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "500",
-                  margin: "5px 0px",
-                }}
-              >
-                Doctor information
-              </p>
-              <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
-                <Col span={12} style={{ margin: "10px 0" }}>
-                  <SpecializationFormField
-                    name="specialization"
-                    label="Specialization"
-                  />
-                </Col>
-              </Row>
-            </div>
-          )}
           {/* basic information  */}
           <div
             style={{
@@ -145,10 +113,10 @@ const AddUserPage = () => {
             </p>
             <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
               <Col span={12} style={{ margin: "10px 0" }}>
-                <FormInput name="firstName" label="First Name" size="large" />
+                <FormInput name="firstName" label="First Name" size="large" placeholder="Enter First Name" />
               </Col>
               <Col span={12} style={{ margin: "10px 0" }}>
-                <FormInput name="lastName" label="Last Name." size="large" />
+                <FormInput name="lastName" label="Last Name." size="large" placeholder="Enter Last Name" />
               </Col>{" "}
               <Col span={12} style={{ margin: "10px 0" }}>
                 <label htmlFor="image">Profile Image</label>
@@ -156,16 +124,12 @@ const AddUserPage = () => {
               </Col>
             </Row>
           </div>
-          {/* Other information  */}
 
           <Button htmlType="submit">submit</Button>
         </Form>
-        <br />
-        <br />
-        <br />
       </div>
-    </>
+    </div>
   );
 };
 
-export default AddUserPage;
+export default AddAdminPage;

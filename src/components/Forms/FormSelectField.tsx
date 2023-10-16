@@ -1,5 +1,6 @@
 "use client";
 
+import { USER_ROLE } from "@/constant/role";
 import { Select } from "antd";
 import { useFormContext, Controller } from "react-hook-form";
 
@@ -34,11 +35,15 @@ const FormSelectField = ({
   const { control, watch } = useFormContext();
   const srv = watch();
 
-  // if (srv?.role === USER_ROLE.DOCTOR && setIsRoleIsDoctor) {
-  //   setIsRoleIsDoctor(true);
-  // } else if (srv?.role !== USER_ROLE.DOCTOR && setIsRoleIsDoctor) {
-  //   setIsRoleIsDoctor(false);
-  // }
+  if (srv?.role === USER_ROLE.DOCTOR && setIsRoleIsDoctor) {
+    console.log("1",srv.role);
+    setIsRoleIsDoctor(true);
+  } else if (srv?.role !== USER_ROLE.DOCTOR && setIsRoleIsDoctor) {
+    console.log("2",srv.role);
+    setIsRoleIsDoctor(false);
+  }
+
+  console.log("3",srv.role);
 
   return (
     <>
