@@ -26,7 +26,7 @@ const AddBlogPage = () => {
       // @ts-ignore
       if (res?.data && !isError) {
         message.success("Blog created successfully");
-        router.push("/dashboard/blog/blog-lists");
+        router.push("/dashboard/blog/blog-list");
       }
     } catch (err: any) {
       console.error(err?.data?.message);
