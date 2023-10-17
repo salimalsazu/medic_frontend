@@ -5,9 +5,10 @@ const SERVICE_API = "/services";
 const serviceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getService: builder.query({
-      query: () => ({
+      query: (arg: Record<string, any>) => ({
         url: `${SERVICE_API}`,
         method: "GET",
+        params: arg,
       }),
       providesTags: [tagTypes.service],
     }),

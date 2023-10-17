@@ -49,6 +49,14 @@ const AddBooking = () => {
     { label: "10.00-10.20 AM", value: "10.00-10.20 AM" },
     { label: "10.20-10.40 AM", value: "10.20-10.40 AM" },
     { label: "10.40-11.00 AM", value: "10.40-11.00 AM" },
+    { label: "11.00-11.20 AM", value: "11.00-11.20 AM" },
+    { label: "11.20-11.40 AM", value: "11.20-11.40 AM" },
+    { label: "11.40-12.00 PM", value: "11.40-12.00 PM" },
+    { label: "05.00-05.20 PM", value: "05.00-05.20 PM" },
+    { label: "05.20-05.40 PM", value: "05.20-05.40 PM" },
+    { label: "05.40-06.00 PM", value: "05.40-06.00 PM" },
+    { label: "06.20-06.40 PM", value: "06.20-06.40 PM" },
+    { label: "06.40-07.00 PM", value: "06.40-07.00 PM" },
   ];
 
   const service = [
@@ -102,13 +110,13 @@ const AddBooking = () => {
           </Col>
           <Col span={12} style={{ margin: "15px 0" }}>
             <div style={{ margin: "10px 0px" }}>
-              <FormInput name="booing.name" label="User name" />
+              <FormInput size="large" name="booing.name" label="User name" />
             </div>
             <div style={{ margin: "10px 0px" }}>
-              <FormInput name="booing.email" label="Email" />
+              <FormInput size="large" name="booing.email" label="Email" />
             </div>
             <div style={{ margin: "10px 0px" }}>
-              <FormInput name="booing.mobile" label="Mobile No" />
+              <FormInput size="large" name="booing.mobile" label="Mobile No" />
             </div>
           </Col>
         </Row>

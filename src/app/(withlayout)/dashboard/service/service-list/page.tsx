@@ -20,11 +20,7 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UploadImage from "@/ui/UploadImage";
 import FormTextArea from "@/components/Forms/FormTextArea";
-import {
-  useDeleteBlogMutation,
-  useGetBlogsQuery,
-  useUpdateBlogMutation,
-} from "@/redux/api/features/blogApi";
+
 import TableList from "@/components/Table/TableList";
 import {
   useDeleteServiceMutation,
@@ -41,15 +37,14 @@ const ServiceList = () => {
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
-  // get data
-  const { data, isLoading } = useGetServiceQuery(query);
-
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
   query["searchTerm"] = searchTerm;
 
+  // get data
+  const { data, isLoading } = useGetServiceQuery({ ...query });
   // handle edit
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -234,12 +229,12 @@ const ServiceList = () => {
             },
             {
               label: "Blog Lists",
-              link: "/dashboard/blog-lists",
+              link: "/dashboard/service/service-list",
             },
           ]}
         />
         <div className="mt-5">
-          <ActionBar title="Blog Lists">
+          <ActionBar title="Service Lists">
             <Input
               type="text"
               size="large"
@@ -252,7 +247,7 @@ const ServiceList = () => {
               }}
             />
             <div>
-              <Link href="/admin/course/create">
+              <Link href="/dashboard/service/add-service">
                 <Button type="primary">Create</Button>
               </Link>
               {(!!sortBy || !!sortOrder || !!searchTerm) && (
