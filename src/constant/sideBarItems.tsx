@@ -33,15 +33,6 @@ export const sidebarItems = (role: string) => {
           icon: <UserOutlined />,
           key: `/${role}/profile`,
         },
-        {
-          label: (
-            <Link href={`/dashboard/${role}/change-password`}>
-              Change Password
-            </Link>
-          ),
-          icon: <UsergroupDeleteOutlined />,
-          key: `/${role}/change-password`,
-        },
       ],
     },
   ];
@@ -116,13 +107,6 @@ export const sidebarItems = (role: string) => {
         {
           label: <Link href={`/dashboard/booking/add-slot`}>Add Slot</Link>,
           key: `/add-slot`,
-          icon: <FileAddOutlined />,
-        },
-        {
-          label: (
-            <Link href={`/dashboard/booking/add-booking`}>Add Booking</Link>
-          ),
-          key: `/add-service`,
           icon: <FileAddOutlined />,
         },
         {

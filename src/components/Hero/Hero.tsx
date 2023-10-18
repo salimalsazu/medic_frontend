@@ -1,71 +1,171 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react";
-
-import DoctorImage from "../../../public/assists/bruno-rodrigues-279xIHymPYY-unsplash-removebg-preview.png";
-import Image from "next/image";
+import React, { useState } from "react";
 
 const Hero = () => {
-  const HeroData = [
-    {
-      name: "25+",
-      description: "Years of Experience",
-    },
-    {
-      name: "140+",
-      description: "Specialist Doctors",
-    },
-  ];
-
   return (
-    <div className="common h-[740px] md:flex items-center ">
-      {/* welcome */}
-      <div className="font-inter my-[20px] md:my-0 flex flex-col h-[400px] justify-around">
-        <p className="text-primary md:text-[20px] text-[16px] font-semibold">
-          WELCOME TO MEDDIC
-        </p>
-        <p className="font-poppins md:text-[55px] text-[35px] md:w-[550px]">
-          We Are Here to Hear <br /> and Heal Your <br /> Health Problems
-        </p>
-        <p className="md:w-[500px] text-gray-[400px] font-poppins text-gray-500">
-          The benefits of MEDDPICC are that it allows sellers to quickly qualify
-          or disqualify opportunities before they get too far into the sales
-          process and gives sellers a framework to start from.
-        </p>
+    <>
+      <div className="relative common bg-white pt-[120px] pb-[110px] lg:pt-[150px]">
+        <div className="container">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4 lg:w-5/12">
+              <div className="hero-content">
+                <h1 className="mb-3 text-4xl font-bold leading-snug text-dark sm:text-[42px] lg:text-[40px] xl:text-[42px]">
+                  Meddic Healthcare: Your Trusted Partner in Healing
+                </h1>
+                <p className="mb-8 max-w-[480px] text-base text-body-color">
+                  At Meddic Hospital, we are committed to being your wellness
+                  destination. Our dedicated team of healthcare professionals
+                  strives to provide the highest quality of care and support for
+                  your health journey.
+                </p>
+                <ul className="flex flex-wrap items-center">
+                  <li>
+                    <a
+                      href="/#"
+                      className="inline-flex items-center justify-center px-6 py-4 text-base font-normal text-center text-white rounded-lg bg-primary hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10"
+                    >
+                      Get Started
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/#"
+                      className="inline-flex items-center justify-center px-6 py-4 text-base font-normal text-center text-body-color hover:text-primary sm:px-10 lg:px-8 xl:px-10"
+                    >
+                      <span className="mr-2">
+                        <svg
+                          width="22"
+                          height="22"
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle cx="11" cy="11" r="11" fill="#3056D3" />
+                          <rect
+                            x="6.90906"
+                            y="13.3636"
+                            width="8.18182"
+                            height="1.63636"
+                            fill="white"
+                          />
+                          <rect
+                            x="10.1818"
+                            y="6"
+                            width="1.63636"
+                            height="4.09091"
+                            fill="white"
+                          />
+                          <path
+                            d="M11 12.5454L13.8343 9.47726H8.16576L11 12.5454Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </span>
+                      Download App
+                    </a>
+                  </li>
+                </ul>
+                <div className="pt-16 clients">
+                  <h6 className="flex items-center mb-3 text-xs font-normal text-body-color">
+                    Some Of Our Clients
+                    <span className="ml-2 inline-block h-[1px] w-8 bg-body-color"></span>
+                  </h6>
 
-        <div className="flex w-full gap-5 my-[10px]">
-          <button className="appointmentButton">Get Start</button>
-          <button className="px-[20px] py-[10px]  rounded-xl border-2 scale-100 hover:scale-110 ease-in duration-100 ">
-            Contact Us
-          </button>
+                  <div className="flex items-center space-x-4">
+                    <SingleImage
+                      href="#"
+                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/ayroui.svg"
+                    />
+
+                    <SingleImage
+                      href="#"
+                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/graygrids.svg"
+                    />
+
+                    <SingleImage
+                      href="#"
+                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/uideck.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="hidden px-4 lg:block lg:w-1/12"></div>
+            <div className="w-full px-4 lg:w-6/12">
+              <div className="lg:ml-auto lg:text-right">
+                <div className="relative z-10 inline-block pt-11 lg:pt-0">
+                  <img
+                    src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
+                    alt="hero"
+                    className="max-w-full lg:ml-auto"
+                  />
+                  <span className="absolute -left-8 -bottom-8 z-[-1]">
+                    <svg
+                      width="93"
+                      height="93"
+                      viewBox="0 0 93 93"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="2.5" cy="2.5" r="2.5" fill="#3056D3" />
+                      <circle cx="2.5" cy="24.5" r="2.5" fill="#3056D3" />
+                      <circle cx="2.5" cy="46.5" r="2.5" fill="#3056D3" />
+                      <circle cx="2.5" cy="68.5" r="2.5" fill="#3056D3" />
+                      <circle cx="2.5" cy="90.5" r="2.5" fill="#3056D3" />
+                      <circle cx="24.5" cy="2.5" r="2.5" fill="#3056D3" />
+                      <circle cx="24.5" cy="24.5" r="2.5" fill="#3056D3" />
+                      <circle cx="24.5" cy="46.5" r="2.5" fill="#3056D3" />
+                      <circle cx="24.5" cy="68.5" r="2.5" fill="#3056D3" />
+                      <circle cx="24.5" cy="90.5" r="2.5" fill="#3056D3" />
+                      <circle cx="46.5" cy="2.5" r="2.5" fill="#3056D3" />
+                      <circle cx="46.5" cy="24.5" r="2.5" fill="#3056D3" />
+                      <circle cx="46.5" cy="46.5" r="2.5" fill="#3056D3" />
+                      <circle cx="46.5" cy="68.5" r="2.5" fill="#3056D3" />
+                      <circle cx="46.5" cy="90.5" r="2.5" fill="#3056D3" />
+                      <circle cx="68.5" cy="2.5" r="2.5" fill="#3056D3" />
+                      <circle cx="68.5" cy="24.5" r="2.5" fill="#3056D3" />
+                      <circle cx="68.5" cy="46.5" r="2.5" fill="#3056D3" />
+                      <circle cx="68.5" cy="68.5" r="2.5" fill="#3056D3" />
+                      <circle cx="68.5" cy="90.5" r="2.5" fill="#3056D3" />
+                      <circle cx="90.5" cy="2.5" r="2.5" fill="#3056D3" />
+                      <circle cx="90.5" cy="24.5" r="2.5" fill="#3056D3" />
+                      <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
+                      <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
+                      <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* image */}
-
-      <div className="hidden md:block">
-        <Image
-          src={DoctorImage}
-          alt=""
-          width={500}
-          height={600}
-          className="md:mt-[90px] md:w-[550px] md:h-[650px]"
-        />
-      </div>
-
-      {/* card */}
-      <div className="flex flex-col gap-5">
-        {HeroData.map((data, i) => (
-          <div
-            key={i}
-            className="card flex flex-col items-center justify-center bg-white p-4 md:w-[250px]  rounded-xl shadow-xl"
-          >
-            <p className="text-[40px] font-semibold">{data.name}</p>
-            <p className="text-[18px] text-gray-500">{data.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
 export default Hero;
+
+const SingleImage = ({ href, imgSrc }) => {
+  return (
+    <>
+      <a href={href} className="flex w-full items-center justify-center">
+        <img src={imgSrc} alt="brand image" className="w-full h-10" />
+      </a>
+    </>
+  );
+};
+
+const ListItem = ({ children, navItemStyles, NavLink }) => {
+  return (
+    <>
+      <li>
+        <a
+          href={NavLink}
+          className={`flex py-2 text-base font-medium lg:ml-12 lg:inline-flex ${navItemStyles}`}
+        >
+          {children}
+        </a>
+      </li>
+    </>
+  );
+};

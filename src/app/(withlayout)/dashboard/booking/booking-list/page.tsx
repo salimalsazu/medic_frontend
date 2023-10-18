@@ -21,9 +21,9 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import FormInput from "@/components/Forms/FormInput";
 import ModalForm from "@/components/modal/modal";
 import Form from "@/components/Forms/Form";
-import { slot } from "@/constant/role";
 import { useGetSlotQuery } from "@/redux/api/features/slotApi";
 import { useGetServiceQuery } from "@/redux/api/features/serviceApi";
+import FormDatePicker from "@/components/Forms/FormDatePicker";
 
 const BookingList = () => {
   const query: Record<string, any> = {};
@@ -53,19 +53,6 @@ const BookingList = () => {
     ...query,
   });
 
-  const deleteHandler = async (id: string) => {
-    //   message.loading("Deleting.....");
-    //   try {
-    //     //   console.log(data);
-    //     const res = await deleteCourse(id);
-    //     if (res) {
-    //       message.success("Course Deleted successfully");
-    //     }
-    //   } catch (err: any) {
-    //     //   console.error(err.message);
-    //     message.error(err.message);
-    //   }
-  };
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editData, setEditData] = useState<any>(null);
@@ -74,14 +61,30 @@ const BookingList = () => {
     useUpdateBookingMutation();
 
   const handleEdit = async (updated: any) => {
+    console.log(updated?.appointmentDate);
+
+    const dateString = updated?.appointmentDate?.$d ?? updated?.appointmentDate;
+
+    console.log(dateString, "dateString");
+    const dateObject = new Date(dateString);
+
+    console.log(dateObject, "dateObject");
+
+    // Get ISO string
+    const isoString = dateObject?.toISOString();
+
+    console.log(isoString, "isoString");
+
     const editedData = {
-      serviceId: updated.service.serviceId,
-      firstName: updated.profile.firstName,
-      contactNumber: updated.profile.contactNumber,
-      appointmentDate: updated.appointmentDate,
-      appointmentStatus: updated.appointmentStatus,
-      slotId: updated.slot.slotId,
+      serviceId: updated?.service.serviceId,
+      firstName: updated?.profile.firstName,
+      contactNumber: updated?.profile.contactNumber,
+      appointmentDate: isoString,
+      appointmentStatus: updated?.appointmentStatus,
+      slotId: updated?.slot.slotId,
     };
+
+    console.log(editedData, "editedData");
 
     const id = updated.appointmentId;
 
@@ -165,14 +168,6 @@ const BookingList = () => {
               type="primary"
             >
               <EditOutlined />
-            </Button>
-
-            <Button
-              onClick={() => deleteHandler(data?.id)}
-              type="primary"
-              danger
-            >
-              <DeleteOutlined />
             </Button>
           </>
         );
@@ -338,8 +333,7 @@ const BookingList = () => {
               <Row gutter={{ xs: 24, xl: 12, lg: 12, md: 24 }}>
                 <Col span={8} style={{ margin: "10px 0" }}>
                   <div style={{ margin: "10px 0px" }}>
-                    <FormInput
-                      size="large"
+                    <FormDatePicker
                       name="appointmentDate"
                       label="Appointment Date"
                     />

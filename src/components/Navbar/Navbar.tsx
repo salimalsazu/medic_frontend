@@ -71,7 +71,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="py-[16px] border-b-2 borderColor common flex gap-3 items-center justify-between w-full">
+    <div className="py-[16px] border-b-2 borderColor common flex gap-3 items-center justify-between w-full bg-blue-200 text-black">
       {/* logo */}
       <Link href={"/"} className="md:w-full">
         <Image

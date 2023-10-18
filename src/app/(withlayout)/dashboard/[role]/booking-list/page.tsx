@@ -26,7 +26,7 @@ import { slot } from "@/constant/role";
 import { useGetSlotQuery } from "@/redux/api/features/slotApi";
 import { useGetServiceQuery } from "@/redux/api/features/serviceApi";
 
-const MyBookingList = () => {
+const BookingList = () => {
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -46,38 +46,57 @@ const MyBookingList = () => {
   // get data
   const { data, isLoading } = useGetMyBookingQuery({ ...query });
 
-  //   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  //   const [editData, setEditData] = useState<any>(null);
+  const { data: slotData, isLoading: slotLoading } = useGetSlotQuery({
+    ...query,
+  });
 
-  //   const [updateBooking, { isLoading: deleteLoading }] =
-  //     useUpdateBookingMutation();
+  const { data: serviceData, isLoading: serviceLoading } = useGetServiceQuery({
+    ...query,
+  });
 
-  //   const handleEdit = async (updated: any) => {
-  //     const editedData = {
-  //       serviceId: updated.service.serviceId,
-  //       firstName: updated.profile.firstName,
-  //       contactNumber: updated.profile.contactNumber,
-  //       appointmentDate: updated.appointmentDate,
-  //       appointmentStatus: updated.appointmentStatus,
-  //       slotId: updated.slot.slotId,
-  //     };
+  const deleteHandler = async (id: string) => {
+    //   message.loading("Deleting.....");
+    //   try {
+    //     //   console.log(data);
+    //     const res = await deleteCourse(id);
+    //     if (res) {
+    //       message.success("Course Deleted successfully");
+    //     }
+    //   } catch (err: any) {
+    //     //   console.error(err.message);
+    //     message.error(err.message);
+    //   }
+  };
 
-  //     const id = updated.appointmentId;
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editData, setEditData] = useState<any>(null);
 
-  //     try {
-  //       const res = await updateBooking({ id, data: editedData }).unwrap();
+  const [updateBooking, { isLoading: deleteLoading }] =
+    useUpdateBookingMutation();
 
-  //       if (res) {
-  //         message.success("Booking updated successfully");
-  //         setIsEditModalOpen(false);
-  //       }
-  //     } catch (error: any) {
-  //       console.log(error, "booking errror");
-  //       console.error(error?.data);
-  //       message.error(error?.data);
-  //       // message.error("Slot May be booked");
-  //     }
-  //   };
+  const handleEdit = async (updated: any) => {
+    const editedData = {
+      firstName: updated.profile.firstName,
+      contactNumber: updated.profile.contactNumber,
+      appointmentStatus: updated.appointmentStatus,
+    };
+
+    const id = updated.appointmentId;
+
+    try {
+      const res = await updateBooking({ id, data: editedData }).unwrap();
+
+      if (res) {
+        message.success("Booking updated successfully");
+        setIsEditModalOpen(false);
+      }
+    } catch (error: any) {
+      console.log(error, "booking errror");
+      console.error(error?.data);
+      message.error(error?.data);
+      // message.error("Slot May be booked");
+    }
+  };
 
   const columns = [
     {
@@ -128,6 +147,27 @@ const MyBookingList = () => {
       dataIndex: "appointmentStatus",
       //   sorter: true,
     },
+    {
+      title: "Action",
+      render: function (data: any) {
+        return (
+          <>
+            <Button
+              style={{
+                margin: "0px 5px",
+              }}
+              onClick={() => {
+                setIsEditModalOpen(true);
+                setEditData(data);
+              }}
+              type="primary"
+            >
+              <EditOutlined />
+            </Button>
+          </>
+        );
+      },
+    },
   ];
 
   const onPaginationChange = (page: number, pageSize: number) => {
@@ -151,7 +191,6 @@ const MyBookingList = () => {
 
   const status = [
     { label: "Pending", value: "pending" },
-    { label: "Approved", value: "approved" },
     { label: "Rejected", value: "rejected" },
   ];
 
@@ -212,8 +251,73 @@ const MyBookingList = () => {
         onTableChange={onTableChange}
         showPagination={true}
       />
+
+      {isEditModalOpen && editData && (
+        <ModalForm
+          open={isEditModalOpen}
+          setOpen={setIsEditModalOpen}
+          title="Blog"
+          isLoading={deleteLoading}
+        >
+          <Form submitHandler={handleEdit} defaultValues={editData}>
+            <div
+              style={{
+                border: "1px solid #d9d9d9",
+                borderRadius: "5px",
+                padding: "15px",
+                marginBottom: "10px",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "500",
+                  margin: "5px 0px",
+                }}
+              >
+                Booking information
+              </p>
+
+              <Row gutter={{ xs: 24, xl: 24, lg: 24, md: 24 }}>
+                <Col span={8} style={{ margin: "10px 0" }}>
+                  <div style={{ margin: "10px 0px" }}>
+                    <FormInput
+                      size="large"
+                      name="profile.firstName"
+                      label="Full Name"
+                    />
+                  </div>
+                </Col>
+                <Col span={8} style={{ margin: "10px 0" }}>
+                  <div style={{ margin: "10px 0px" }}>
+                    <FormInput
+                      size="large"
+                      name="profile.contactNumber"
+                      label="Contact No"
+                    />
+                  </div>
+                </Col>
+                <Col span={8} style={{ margin: "10px 0" }}>
+                  <div style={{ margin: "10px 0px" }}>
+                    <FormSelectField
+                      name="appointmentStatus"
+                      label="Booking Status"
+                      options={status.map((c: any) => ({
+                        label: c.label,
+                        value: c.value,
+                      }))}
+                    />
+                  </div>
+                </Col>
+              </Row>
+            </div>
+
+            <Button htmlType="submit">submit</Button>
+          </Form>
+        </ModalForm>
+      )}
     </div>
   );
 };
 
-export default MyBookingList;
+export default BookingList;

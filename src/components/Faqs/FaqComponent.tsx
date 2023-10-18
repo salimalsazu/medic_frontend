@@ -12,13 +12,12 @@ type Props = {
 
 const FaqComponent = ({ itemData, setData, size }: Props) => {
   const onChange = (key: string | string[]) => {
-    console.log(key);
     setData && setData(key);
   };
 
   const items: CollapseProps["items"] = itemData;
   return (
-    <div className="!w-full">
+    <div className="!w-full relative">
       <Collapse
         className="!w-full"
         items={items}

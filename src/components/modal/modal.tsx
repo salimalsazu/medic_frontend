@@ -7,9 +7,11 @@ type ModalFormProps = {
   children: ReactNode;
   title: string;
   isLoading: boolean;
+  width?: number;
 };
 
 const ModalForm = ({
+  width,
   open,
   setOpen,
   children,
@@ -23,7 +25,7 @@ const ModalForm = ({
       open={open}
       onOk={() => setOpen(false)}
       onCancel={() => setOpen(false)}
-      width={1000}
+      width={width ?? 1000}
       confirmLoading={isLoading}
       okText={`Update ${title}`}
       closable={false}

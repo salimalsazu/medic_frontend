@@ -1,8 +1,18 @@
 import { IServiceTypes } from "@/types/Service";
-import React from "react";
+import React, { useState } from "react";
 import ServiceCard from "./ServiceCard";
+import { useGetServiceQuery } from "@/redux/api/features/serviceApi";
 
- const Services = () => {
+const Services = () => {
+  const query: Record<string, any> = {};
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  query["searchTerm"] = searchTerm;
+
+  // get data
+  const { data, isLoading } = useGetServiceQuery({ ...query });
+
   const serviceData: IServiceTypes[] = [
     {
       serviceName: "Pharmacy Services",
@@ -102,10 +112,13 @@ import ServiceCard from "./ServiceCard";
       {/* service card */}
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 justify-between">
-        {serviceData.map((service, index) => (
+        {data?.map((service: any, index: number) => (
           <ServiceCard key={index} service={service} />
         ))}
       </div>
+        
+
+
     </div>
   );
 };

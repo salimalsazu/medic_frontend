@@ -69,7 +69,7 @@ const Apointment = () => {
     // Get ISO string
     const isoString = dateObject.toISOString();
 
-    console.log(isoString);
+    // console.log(isoString);
 
     const BookingData = {
       appointmentDate: isoString,

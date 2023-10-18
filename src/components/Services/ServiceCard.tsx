@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/redux/hooks";
+import { addToCart } from "@/redux/slice/cartSlice";
 import { IServiceTypes } from "@/types/Service";
 import Image from "next/image";
 import React from "react";
@@ -7,6 +9,11 @@ type ServiceCardProps = {
 };
 
 const ServiceCard = ({ service }: ServiceCardProps) => {
+  const dispatch = useAppDispatch();
+  const handleAddToCart = (addedService: IServiceTypes) => {
+    dispatch(addToCart(addedService));
+  };
+
   return (
     <div className="bg-blue-50/75 border rounded-xl p-[30px] flex flex-col gap-3 font-inter hover:border-primary ease-in duration-100 delay-75 shadow ">
       <Image
@@ -47,7 +54,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
       {/* add to card */}
 
       <div className="flex items-center gap-3">
-        <button className="bg-primary text-white px-3 py-1 rounded-full text-[12px]">
+        <button
+          onClick={() => handleAddToCart(service)}
+          className="bg-primary text-white px-3 py-1 rounded-full text-[12px]"
+        >
           Add to cart
         </button>
         <button className="bg-white text-primary px-3 py-1 rounded-full text-[12px] border border-primary">

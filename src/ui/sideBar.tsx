@@ -6,6 +6,7 @@ import { Layout, Menu } from "antd";
 import { USER_ROLE } from "@/constant/role";
 import { sidebarItems } from "@/constant/sideBarItems";
 import { getUserInfo } from "@/services/auth.services";
+import Link from "next/link";
 
 const { Sider } = Layout;
 
@@ -30,7 +31,8 @@ const SideBar = ({ role }: { role: string }) => {
         bottom: 0,
       }}
     >
-      <div
+      <Link
+        href="/"
         style={{
           color: "black",
           fontSize: "2rem",
@@ -41,7 +43,7 @@ const SideBar = ({ role }: { role: string }) => {
         }}
       >
         U-Medic
-      </div>
+      </Link>
       <Menu
         theme="light"
         defaultSelectedKeys={["1"]}

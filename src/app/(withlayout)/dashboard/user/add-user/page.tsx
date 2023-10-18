@@ -1,7 +1,10 @@
 "use client";
-
 import { useState } from "react";
+
 import { Button, Col, Row, message } from "antd";
+
+import { useRouter } from "next/navigation";
+import { useRegistrationMutation } from "@/redux/api/authApi";
 import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
@@ -24,41 +27,45 @@ const AddUserPage = () => {
 
   const [isRoleIsDoctor, setIsRoleIsDoctor] = useState(false);
 
-  const adminOnSubmit = async (values: any) => {
-    const obj = { ...values };
-    const file = obj["file"];
-    delete obj["file"];
-    const data = JSON.stringify(obj);
-    const formData = new FormData();
-    formData.append("file", file as Blob);
-    formData.append("data", data);
-    message.loading("Creating...");
+  const [registration, { isLoading, error }] = useRegistrationMutation();
+  const router = useRouter();
+
+  const handleCreateUserSubmit = async (values: any) => {
+    const userData = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      role: values.role,
+      email: values.email,
+      password: values.password,
+      profileImage: values.profileImage,
+    };
+    message.loading("Creating User");
     try {
-      // const res = await addFacultyWithFormData(formData);
-      // if (!!res) {
-      //   message.success("Faculty created successfully!");
-      // }
-    } catch (err: any) {
-      // console.error(err.message);
+      const res = await registration(userData);
+      console.log(res);
+      // @ts-ignore
+      if (res?.data && !error) {
+        message.success("Successfully Created User");
+        router.push("/dashboard/user-lists");
+      }
+    } catch (error: any) {
+      console.error(error?.data?.message);
+      message.error(error?.data?.message);
     }
   };
-
-  console.log(isRoleIsDoctor);
-
-  const base = "super-admin";
   return (
-    <>
+    <div className="bg-white  p-5 rounded-2xl shadow-lg">
       <UMBreadCrumb
         items={[
-          { label: `${base}`, link: `/dashboard` },
-          { label: "add-user", link: `/dashboard/add-user` },
+          { label: `Dashboard`, link: `/dashboard` },
+          { label: "User List", link: `/dashboard/add-user` },
         ]}
       />
       <div className="mt-3">
         <div className="mb-3">
           <h1 className="text-lg text-black/70 font-bold">Create New User</h1>
         </div>
-        <Form submitHandler={adminOnSubmit}>
+        <Form submitHandler={handleCreateUserSubmit}>
           {/* faculty information */}
           <div
             style={{
@@ -75,7 +82,7 @@ const AddUserPage = () => {
             </p>
             <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
               <Col span={12} style={{ margin: "10px 0" }}>
-                <FormInput
+                <FormInput 
                   name="email"
                   label="Email"
                   type="email"
@@ -101,34 +108,6 @@ const AddUserPage = () => {
               </Col>
             </Row>
           </div>
-          {isRoleIsDoctor && (
-            <div
-              style={{
-                border: "1px solid #d9d9d9",
-                borderRadius: "5px",
-                padding: "15px",
-                marginBottom: "10px",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "500",
-                  margin: "5px 0px",
-                }}
-              >
-                Doctor information
-              </p>
-              <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
-                <Col span={12} style={{ margin: "10px 0" }}>
-                  <SpecializationFormField
-                    name="specialization"
-                    label="Specialization"
-                  />
-                </Col>
-              </Row>
-            </div>
-          )}
           {/* basic information  */}
           <div
             style={{
@@ -152,19 +131,46 @@ const AddUserPage = () => {
               </Col>{" "}
               <Col span={12} style={{ margin: "10px 0" }}>
                 <label htmlFor="image">Profile Image</label>
-                <UploadImage name="file" />
+                <UploadImage key="profileImage" name="profileImage" />
               </Col>
             </Row>
           </div>
           {/* Other information  */}
-
+          {isRoleIsDoctor && (
+            <div
+              style={{
+                border: "1px solid #d9d9d9",
+                borderRadius: "5px",
+                padding: "15px",
+                marginBottom: "10px",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "500",
+                  margin: "5px 0px",
+                }}
+              >
+                Other information
+              </p>
+              <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
+                <Col span={12} style={{ margin: "10px 0" }}>
+                  <SpecializationFormField
+                    name="specialization"
+                    label="Specialization"
+                  />
+                </Col>
+              </Row>
+            </div>
+          )}
           <Button htmlType="submit">submit</Button>
         </Form>
         <br />
         <br />
         <br />
       </div>
-    </>
+    </div>
   );
 };
 
