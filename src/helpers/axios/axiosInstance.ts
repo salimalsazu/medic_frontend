@@ -41,11 +41,12 @@ instance.interceptors.response.use(
     if (error?.response?.status === 403) {
     } else {
       const responseObject: IGenericErrorResponse = {
-        statusCode: error?.response?.data?.statusCode || 500,
+        statusCode: error?.response?.status || 500,
         message: error?.response?.data?.message || "Something went wrong",
         errorMessages: error?.response?.data?.message,
       };
-      return responseObject;
+      // console.log(error?.response?.status, "ssssssssssssss");
+      throw responseObject;
     }
 
     // return Promise.reject(error);

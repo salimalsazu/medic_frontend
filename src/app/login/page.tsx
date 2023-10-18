@@ -25,7 +25,7 @@ const LoginPage = () => {
 
       if (res?.accessToken) {
         storeUserInfo({ accessToken: res?.accessToken });
-        router.push("/dashboard");
+        router.push("/");
         message.success("User logged in successfully!");
       }
     } catch (error: any) {

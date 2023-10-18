@@ -13,6 +13,14 @@ const bookingApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.booking],
     }),
+    getMyBooking: builder.query({
+      query: (arg: Record<string, any>) => ({
+        url: `${BOOKING_API}/my-booking`,
+        method: "GET",
+        params: arg,
+      }),
+      providesTags: [tagTypes.booking],
+    }),
 
     // create Faq
     createBooking: builder.mutation({
@@ -46,6 +54,7 @@ const bookingApi = baseApi.injectEndpoints({
 
 export const {
   useGetBookingQuery,
+  useGetMyBookingQuery,
   useCreateBookingMutation,
   useUpdateBookingMutation,
   useDeleteBookingMutation,

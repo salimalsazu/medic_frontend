@@ -8,9 +8,19 @@ import NavbarMenu from "./NavbarMenu";
 import { PhoneTwoTone } from "@ant-design/icons";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
+import AddToCart from "../addToCart/AddToCart";
+import { getUserInfo, removeUserInfo } from "@/services/auth.services";
+import { useRouter } from "next/navigation";
+import { authKey } from "@/constant/common";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const { firstName, lastName, userId, profileId, email, role } =
+    getUserInfo() as any;
+
+  const router = useRouter();
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [addToCart, setAddToCart] = useState<boolean>(false);
 
   const user = {
     name: "John Doe",
@@ -54,6 +64,11 @@ const Navbar = () => {
       link: "/contact",
     },
   ];
+
+  const logOut = () => {
+    removeUserInfo(authKey);
+    router.push("/login");
+  };
 
   return (
     <div className="py-[16px] border-b-2 borderColor common flex gap-3 items-center justify-between w-full">
@@ -115,7 +130,7 @@ const Navbar = () => {
           >
             {NavbarData?.map((nav: INavbarType, i: number) => (
               <p key={i} className="text-[20px] my-[20px]">
-                {nav.name}
+                name
               </p>
             ))}
           </Drawer>
@@ -123,7 +138,7 @@ const Navbar = () => {
 
         {/* user */}
 
-        {user ? (
+        {userId && profileId ? (
           <div className="flex items-center justify-center ">
             <div className=" relative inline-block text-left dropdown">
               <span className="rounded-md shadow-sm">
@@ -153,7 +168,7 @@ const Navbar = () => {
                   <div className="px-4 py-3">
                     <p className="text-sm leading-5">Signed in as</p>
                     <p className="text-sm font-medium leading-5 text-gray-900 truncate">
-                      masud@gmail.com
+                      {email} <br /> ({firstName} {lastName})
                     </p>
                   </div>
                   <div className="py-1">
@@ -164,13 +179,20 @@ const Navbar = () => {
                     >
                       Profile Settings
                     </Link>
-                    <a
-                      href="javascript:void(0)"
+                    <Link
+                      href="/dashboard"
                       className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
                       role="menuitem"
                     >
-                      Support
-                    </a>
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => setAddToCart(true)}
+                      className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+                      role="menuitem"
+                    >
+                      Add To Cart
+                    </button>
                     <span
                       role="menuitem"
                       className="flex justify-between w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50"
@@ -181,6 +203,7 @@ const Navbar = () => {
                   </div>
                   <div className="py-1">
                     <button
+                      onClick={logOut}
                       className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
                       role="menuitem"
                     >
@@ -207,6 +230,8 @@ const Navbar = () => {
           </Link>
         )}
       </div>
+
+      {addToCart && <AddToCart open={addToCart} setOpen={setAddToCart} />}
     </div>
   );
 };

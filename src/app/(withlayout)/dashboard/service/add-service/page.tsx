@@ -13,9 +13,14 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import { Category, ServiceStatus } from "@/constant/role";
 import { useCreateServiceMutation } from "@/redux/api/features/serviceApi";
 import { parentSelectorLinter } from "@ant-design/cssinjs";
+import { useGetCategoriesQuery } from "@/redux/api/features/categoryApi";
 
 const AddBlogPage = () => {
   const [createService, { isLoading, isError }] = useCreateServiceMutation();
+
+  const { data: categoryData, isLoading: categoryLoading } =
+    useGetCategoriesQuery(undefined);
+
   // submit
   const router = useRouter();
 
@@ -60,7 +65,6 @@ const AddBlogPage = () => {
           </h1>
         </div>
         <Form submitHandler={serviceOnSubmit}>
-          {/* faculty information */}
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -108,7 +112,10 @@ const AddBlogPage = () => {
                   <FormSelectField
                     name="categoryId"
                     label="Category"
-                    options={Category}
+                    options={categoryData?.map((item: any) => ({
+                      label: item.categoryName,
+                      value: item.categoryId,
+                    }))}
                   />
                 </div>
               </Col>

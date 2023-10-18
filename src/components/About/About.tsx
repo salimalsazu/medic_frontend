@@ -29,7 +29,7 @@ const About = () => {
         <p className="text-primary md:text-[20px] text-[16px] font-semibold">
           ABOUT MEDDIC
         </p>
-        <p className="font-poppins md:text-[45px] text-[35px] md:w-[550px]">
+        <p className="font-poppins md:text-[45px] text-[30px] md:w-[500px]">
           We Collaborate for Better Healthcare
         </p>
         <p className="md:w-[500px] text-gray-[400px] font-poppins text-gray-500">

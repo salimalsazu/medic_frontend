@@ -87,6 +87,13 @@ export const sidebarItems = (role: string) => {
       children: [
         {
           label: (
+            <Link href={`/dashboard/service/add-category`}>Add Category</Link>
+          ),
+          key: `/add-category`,
+          icon: <FolderAddOutlined />,
+        },
+        {
+          label: (
             <Link href={`/dashboard/service/add-service`}>Add Service</Link>
           ),
           key: `/add-service`,

@@ -228,7 +228,7 @@ const ServiceList = () => {
               link: "/dashboard",
             },
             {
-              label: "Blog Lists",
+              label: "Service Lists",
               link: "/dashboard/service/service-list",
             },
           ]}

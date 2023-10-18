@@ -74,8 +74,6 @@ const BookingList = () => {
     useUpdateBookingMutation();
 
   const handleEdit = async (updated: any) => {
-    console.log(updated, "Updated Dataaaaaaaaaaaaaa");
-
     const editedData = {
       serviceId: updated.service.serviceId,
       firstName: updated.profile.firstName,
@@ -84,7 +82,6 @@ const BookingList = () => {
       appointmentStatus: updated.appointmentStatus,
       slotId: updated.slot.slotId,
     };
-    console.log(editedData, "Edited Dataaaaaaaaaaaaaa");
 
     const id = updated.appointmentId;
 
@@ -96,8 +93,10 @@ const BookingList = () => {
         setIsEditModalOpen(false);
       }
     } catch (error: any) {
-      console.error(error?.data?.message);
-      message.error(error?.data?.message);
+      console.log(error, "booking errror");
+      console.error(error?.data);
+      message.error(error?.data);
+      // message.error("Slot May be booked");
     }
   };
 
@@ -328,7 +327,7 @@ const BookingList = () => {
                     <FormSelectField
                       name="service.serviceId"
                       label="Service Name"
-                      options={serviceData.map((c: any) => ({
+                      options={serviceData?.map((c: any) => ({
                         label: c.serviceName,
                         value: c.serviceId,
                       }))}

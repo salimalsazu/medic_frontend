@@ -36,14 +36,12 @@ const FormSelectField = ({
   const srv = watch();
 
   if (srv?.role === USER_ROLE.DOCTOR && setIsRoleIsDoctor) {
-    console.log("1",srv.role);
+    console.log("1", srv.role);
     setIsRoleIsDoctor(true);
   } else if (srv?.role !== USER_ROLE.DOCTOR && setIsRoleIsDoctor) {
-    console.log("2",srv.role);
+    console.log("2", srv.role);
     setIsRoleIsDoctor(false);
   }
-
-  console.log("3",srv.role);
 
   return (
     <>
