@@ -50,8 +50,8 @@ const Navbar = () => {
       isSubMenu: true,
       subMenu: [
         {
-          name: "Services",
-          link: "/services",
+          name: "Service",
+          link: "/service",
         },
         {
           name: "Services Details",
@@ -60,8 +60,8 @@ const Navbar = () => {
       ],
     },
     {
-      name: "Contact",
-      link: "/contact",
+      name: "Feedback",
+      link: "/feedback",
     },
   ];
 
@@ -139,7 +139,7 @@ const Navbar = () => {
         {/* user */}
 
         {userId && profileId ? (
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center z-50 ">
             <div className=" relative inline-block text-left dropdown">
               <span className="rounded-md shadow-sm">
                 <button

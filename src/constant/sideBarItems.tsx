@@ -45,7 +45,7 @@ export const sidebarItems = (role: string) => {
       key: `/${role}/booking-list`,
     },
     {
-      label: <Link href={`/dashboard/${role}/reviews`}>My Reviews</Link>,
+      label: <Link href={`/dashboard/${role}/my-reviews`}>My Reviews</Link>,
       icon: <PlusSquareOutlined />,
       key: `/${role}/reviews`,
     },
@@ -141,6 +141,22 @@ export const sidebarItems = (role: string) => {
         {
           label: <Link href={`/dashboard/faq/faq-list`}>FAQ List</Link>,
           key: `/faq-list`,
+          icon: <BookOutlined />,
+        },
+      ],
+    },
+    {
+      label: "Feed Back",
+      key: "Feed-Back",
+      icon: <TableOutlined />,
+      children: [
+        {
+          label: (
+            <Link href={`/dashboard/feedback/feedback-list`}>
+              Feed Back List
+            </Link>
+          ),
+          key: `/feedback-list`,
           icon: <BookOutlined />,
         },
       ],

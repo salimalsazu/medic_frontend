@@ -7,6 +7,7 @@ import Faqs from "@/components/Faqs/Faqs";
 import HealthCare from "@/components/HealthCare/HealthCare";
 import Hero from "@/components/Hero/Hero";
 import Services from "@/components/Services/Services";
+import UpComingService from "@/components/Services/UpComingService";
 import { FloatButton } from "antd";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Banner />
       <About />
       <Services />
+      <UpComingService />
       <Apointment />
       <HealthCare />
       <Faqs />
