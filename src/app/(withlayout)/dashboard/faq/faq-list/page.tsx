@@ -12,14 +12,18 @@ import { useState } from "react";
 
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
-import { useDeleteFaqMutation, useGetFaqQuery, useUpdateFaqMutation } from "@/redux/api/features/faqApi";
+import {
+  useDeleteFaqMutation,
+  useGetFaqQuery,
+  useUpdateFaqMutation,
+} from "@/redux/api/features/faqApi";
 import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import ActionBar from "@/ui/ActionBar";
-import UMTable from "@/ui/UMtable";
 import ModalForm from "@/components/modal/modal";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextArea";
+import UMTable from "@/components/ui/UMTable";
 
 const { confirm } = Modal;
 

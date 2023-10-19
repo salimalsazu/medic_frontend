@@ -18,7 +18,6 @@ const { confirm } = Modal;
 import { ExclamationCircleFilled } from "@ant-design/icons";
 
 const Apointment = () => {
-
   const userLoggedIn = isLoggedIn();
 
   const query: Record<string, any> = {};
@@ -108,21 +107,10 @@ const Apointment = () => {
   };
 
   return (
-    <div className="common md:flex gap-10 items-center mb-[60px]">
-      <Image
-        src="https://askproject.net/meddic/wp-content/uploads/sites/156/2023/10/team-of-doctors-discussing-something-at-hospital-c-FHAY6CS.jpg"
-        alt="Picture of the author"
-        width={500}
-        height={500}
-        className="rounded-xl md:w-[550px] md:h-[660px] border-2 "
-      />
-
+    <div className="common md:flex gap-10 items-center mb-[60px] border border-spacing-1 rounded-md my-20 ">
       {/* FAQS */}
       <div className="font-inter my-[20px] md:my-0 flex flex-col md:h-[400px] justify-around ">
-        <p className="text-primary md:text-[20px] text-[16px] font-semibold">
-          APPOINTMENT
-        </p>
-        <p className="font-poppins md:text-[45px] text-[35px] md:w-[550px]">
+        <p className="font-poppins md:text-[45px] text-[35px] md:w-[550px] font-extrabold">
           Book Your Appointment
         </p>
         <p className="md:w-[500px] text-gray-[400px] font-poppins text-gray-500">

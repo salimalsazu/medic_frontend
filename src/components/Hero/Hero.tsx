@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 
 const Hero = () => {
@@ -93,10 +94,12 @@ const Hero = () => {
             <div className="w-full px-4 lg:w-6/12">
               <div className="lg:ml-auto lg:text-right">
                 <div className="relative z-10 inline-block pt-11 lg:pt-0">
-                  <img
+                  <Image
                     src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
                     alt="hero"
-                    className="max-w-full lg:ml-auto"
+                    className="object-fill lg:ml-auto"
+                    width={500}
+                    height={500}
                   />
                   <span className="absolute -left-8 -bottom-8 z-[-1]">
                     <svg
@@ -145,17 +148,23 @@ const Hero = () => {
 
 export default Hero;
 
-const SingleImage = ({ href, imgSrc }) => {
+const SingleImage = ({ href, imgSrc }: any) => {
   return (
     <>
       <a href={href} className="flex w-full items-center justify-center">
-        <img src={imgSrc} alt="brand image" className="w-full h-10" />
+        <Image
+          src={imgSrc}
+          alt="brand image"
+          className="w-full h-10"
+          width={100}
+          height={100}
+        />
       </a>
     </>
   );
 };
 
-const ListItem = ({ children, navItemStyles, NavLink }) => {
+const ListItem = ({ children, navItemStyles, NavLink }: any) => {
   return (
     <>
       <li>

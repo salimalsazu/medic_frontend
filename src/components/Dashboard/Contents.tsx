@@ -1,6 +1,7 @@
 "use client";
 
 import { Layout } from "antd";
+import DashboardNabvar from "./DashboardNabvar";
 const { Content } = Layout;
 
 const Contents = ({ children }: { children: React.ReactNode }) => {
@@ -13,7 +14,7 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
       }}
     >
       {/* Header     */}
-      this is header for dashboard
+      <DashboardNabvar />
       {children}
     </Content>
   );

@@ -5,18 +5,12 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-black text-white">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
           <div className="mx-auto max-w-sm lg:max-w-none">
             <Link href={"/"} className="md:w-full">
-              <Image
-                src={Logo}
-                alt=""
-                width={130}
-                height={284}
-                className="md:w-[130px] md:h-[54px] w-[100px] h-[51px]"
-              />
+              <span className="text-2xl"> Uttara Medic</span>
             </Link>
 
             <p className="mt-4 text-center text-white lg:text-left lg:text-lg">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -11,17 +12,21 @@ const NotFound = () => {
       <div className="flex items-center justify-center ">
         <div className="bg-white  rounded-md flex items-center justify-center mx-4 md:w-2/3 ">
           <div className="flex flex-col items-center ">
-            <img
+            <Image
               loading="lazy"
               className="px-4 hidden md:block"
               src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
-              alt=""
+              alt="image"
+              width={100}
+              height={100}
             />
-            <img
+            <Image
               loading="lazy"
               className="md:hidden"
               src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
-              alt=""
+              alt="Image"
+              width={100}
+              height={100}
             />
             <h1 className="px-4 pt-8 pb-4 text-center text-5xl font-bold leading-10 text-gray-800">
               OOPS! <span className="text-red-600">{`${error?.status}`}</span>

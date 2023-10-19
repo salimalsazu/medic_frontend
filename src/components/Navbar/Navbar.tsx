@@ -45,8 +45,8 @@ const Navbar = () => {
       link: "/about",
     },
     {
-      name: "Services",
-      link: "/services",
+      name: "Service",
+      link: "/service",
       isSubMenu: true,
       subMenu: [
         {
@@ -71,16 +71,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className="py-[16px] border-b-2 borderColor common flex gap-3 items-center justify-between w-full bg-blue-200 text-black">
+    <div className="py-[16px] border-b-2 borderColor common flex gap-3 items-center justify-between w-full bg-white text-black">
       {/* logo */}
       <Link href={"/"} className="md:w-full">
-        <Image
+        {/* <Image
           src={Logo}
           alt=""
           width={130}
           height={284}
           className="md:w-[130px] md:h-[54px] w-[100px] h-[51px]"
-        />
+        /> */}
+        <p className="font-extrabold text-2xl animate-bounce">Uttara Medic.</p>
+        <p className="text-xs text-gray-600">Your satisfaction is our value</p>
       </Link>
       {/* NavData */}
       <div className="md:flex hidden gap-5 w-full justify-between px-[50px]">

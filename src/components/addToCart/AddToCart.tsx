@@ -25,8 +25,8 @@ export default function AddToCard({ open, setOpen }: IAddToCardProps) {
     dispatch(removeFromCart(serviceId));
   };
 
-  const subtotal = cart?.reduce(
-    (total, single) => total + single.servicePrice,
+  const subtotal = (cart as any)?.reduce(
+    (total: any, single: any) => total + single.servicePrice,
     0
   );
 

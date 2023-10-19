@@ -48,9 +48,11 @@ const FeedBack = () => {
                   GET IN TOUCH WITH US
                 </h2>
                 <p className="text-base leading-relaxed mb-9 text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                  enim adiqua minim veniam quis nostrud exercitation ullamco
+                  Medic Hospital is a state-of-the-art medical facility
+                  committed to providing compassionate and high-quality
+                  healthcare to our patients. Our mission is to promote
+                  wellness, prevent illness, and offer exceptional medical
+                  services to the community we serve.
                 </p>
                 <div className="mb-8 flex w-full max-w-[370px]">
                   <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
@@ -68,7 +70,7 @@ const FeedBack = () => {
                       Our Location
                     </h4>
                     <p className="text-base text-body-color">
-                      99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                     Road:10, Sector: 06
                     </p>
                   </div>
                 </div>
@@ -110,7 +112,7 @@ const FeedBack = () => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color">
-                      info@yourdomain.com
+                      support@medic.com
                     </p>
                   </div>
                 </div>
@@ -136,7 +138,7 @@ const FeedBack = () => {
                   </div>
                   <div>
                     <button
-                      htmlType="submit"
+                      type="submit"
                       className="w-full p-3 text-white transition border rounded border-primary bg-primary hover:bg-opacity-90"
                     >
                       Send Message
@@ -962,7 +964,12 @@ const FeedBack = () => {
 
 export default FeedBack;
 
-export const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
+export const ContactTextArea = ({
+  row,
+  placeholder,
+  name,
+  defaultValue,
+}: any) => {
   return (
     <>
       <div className="mb-6">
@@ -978,7 +985,7 @@ export const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
   );
 };
 
-export const ContactInputBox = ({ type, placeholder, name }) => {
+export const ContactInputBox = ({ type, placeholder, name }: any) => {
   return (
     <>
       <div className="mb-6">

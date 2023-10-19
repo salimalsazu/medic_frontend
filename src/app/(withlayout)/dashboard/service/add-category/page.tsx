@@ -16,7 +16,6 @@ import { parentSelectorLinter } from "@ant-design/cssinjs";
 import { useCreateCategoryMutation } from "@/redux/api/features/categoryApi";
 
 const AddBlogPage = () => {
-    
   const [createCategory, { isLoading, isError }] = useCreateCategoryMutation();
 
   const router = useRouter();
@@ -87,7 +86,6 @@ const AddBlogPage = () => {
               <Col span={24} style={{ margin: "10px 0" }}>
                 <div style={{ margin: "10px 0px" }}>
                   <FormTextArea
-                    style={{ margin: "10px 0px" }}
                     name="description"
                     label="Description"
                     rows={8}

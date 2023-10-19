@@ -12,13 +12,11 @@ import Link from "next/link";
 import { useState } from "react";
 import dayjs from "dayjs";
 
-import Image from "next/image";
 import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import ActionBar from "@/ui/ActionBar";
 import ModalForm from "@/components/modal/modal";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import UploadImage from "@/ui/UploadImage";
 import FormTextArea from "@/components/Forms/FormTextArea";
 
 import TableList from "@/components/Table/TableList";

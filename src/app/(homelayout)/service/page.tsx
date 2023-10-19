@@ -24,8 +24,8 @@ const ServicesPage = () => {
       <p className="font-poppins mx-auto mt-12 text-center ">
         Explore our comprehensive range of cutting-edge medical facilities and
         services, carefully curated and personalized just for you. From
-        state-of-the-art diagnostic tools to expert medical professionals, we're
-        committed to delivering the best healthcare experience.
+        state-of-the-art diagnostic tools to expert medical professionals, we
+        are committed to delivering the best healthcare experience.
       </p>
 
       <div className="mt-5 w-[60%]">
