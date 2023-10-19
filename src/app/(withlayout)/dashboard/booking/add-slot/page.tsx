@@ -23,6 +23,8 @@ const AddBooking = () => {
   const slotOnSubmit = async (data: any) => {
     message.loading("Creating new Slot");
 
+    console.log(data, "data");
+
     const SlotData = {
       slotTime: data.slotTime,
     };
@@ -58,7 +60,7 @@ const AddBooking = () => {
             </div> */}
             <div style={{ margin: "10px 0px" }}>
               <FormSelectField
-                name="booking.slot"
+                name="slotTime"
                 label="Time Slot"
                 options={slot}
               />

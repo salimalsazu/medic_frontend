@@ -1,8 +1,11 @@
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart } from "@/redux/slice/cartSlice";
+import { isLoggedIn } from "@/services/auth.services";
 import { IServiceTypes } from "@/types/Service";
+import { message } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type ServiceCardProps = {
@@ -10,9 +13,19 @@ type ServiceCardProps = {
 };
 
 const ServiceCard = ({ service }: ServiceCardProps) => {
+  const userLoggedIn = isLoggedIn();
+
+  const router = useRouter();
+
   const dispatch = useAppDispatch();
+
   const handleAddToCart = (addedService: IServiceTypes) => {
-    dispatch(addToCart(addedService));
+    if (!userLoggedIn) {
+      router.push("/login");
+    } else {
+      dispatch(addToCart(addedService));
+      message.success("Added to cart");
+    }
   };
 
   return (

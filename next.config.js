@@ -10,6 +10,7 @@ const nextConfig = {
       "cdn.tailgrids.com",
       "tailus.io",
       "truckeradvisor",
+      "randomuser.me",
     ],
   },
 };

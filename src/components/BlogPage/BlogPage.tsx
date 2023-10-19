@@ -7,8 +7,6 @@ const BlogPage = () => {
   // get data
   const { data, isLoading } = useGetBlogsQuery(undefined);
 
-
-
   // const blogData: IBlogType[] = [
   //   {
   //     blogId: "1a6627c7-f2f8-4698-945e-f32519863618",
@@ -64,24 +62,18 @@ const BlogPage = () => {
     <div className="common mb-[60px]">
       {/* blog news */}
 
-      <div className="w-full flex justify-between items-center mb-[100px]">
+      <div className="w-full flex justify-between items-center mt-20 mb-[100px]">
         <div>
-          <p className="text-primary md:text-[20px] text-[16px] font-semibold">
-            BLOG NEWS
+          <p className="text-black md:text-[20px] text-[32px] font-semibold">
+            OUR RECENT BLOGS
           </p>
-          <p className="font-poppins md:text-[45px] text-[35px] md:w-[550px]">
-            Articles From Meddic
-          </p>
-        </div>
-        <div>
-          <button className="appointmentButton">More Article</button>
         </div>
       </div>
 
       {/* blogs */}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 ">
-        {data?.map((blog :any) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-center ">
+        {data?.map((blog: any) => (
           <BlogCard key={blog.blogId} blog={blog} />
         ))}
       </div>

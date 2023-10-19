@@ -8,6 +8,7 @@ import HealthCare from "@/components/HealthCare/HealthCare";
 import Hero from "@/components/Hero/Hero";
 import Services from "@/components/Services/Services";
 import UpComingService from "@/components/Services/UpComingService";
+import Testimonial from "@/components/Testimonial/Testimonial";
 import { FloatButton } from "antd";
 
 export default function Home() {
@@ -19,7 +20,8 @@ export default function Home() {
       <About />
       <Services />
       <UpComingService />
-      <HealthCare />
+      {/* <HealthCare /> */}
+      <Testimonial />
       <Faqs />
       <BlogPage />
       <FloatButton.BackTop type="primary" tooltip="Scroll to top" />

@@ -55,7 +55,7 @@ const AddBlogPage = () => {
       <UMBreadCrumb
         items={[
           { label: `dashboard`, link: `/dashboard` },
-          { label: "add-blog", link: `/dashboard/service/add-service` },
+          { label: "add-service", link: `/dashboard/service/add-service` },
         ]}
       />
       <div className="mt-3">
@@ -76,7 +76,7 @@ const AddBlogPage = () => {
             <p
               style={{ fontSize: "18px", fontWeight: "500", margin: "5px 0px" }}
             >
-              Blog information
+              Service information
             </p>
             <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
               <Col span={3} style={{ margin: "10px 0" }}>

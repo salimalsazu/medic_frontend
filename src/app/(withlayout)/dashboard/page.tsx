@@ -1,7 +1,9 @@
+import DashboardCard from "@/components/Dashboard/DashboardCard";
+
 const DashBoardPage = () => {
   return (
     <div>
-      <h1>Hi</h1>
+      <DashboardCard />
     </div>
   );
 };

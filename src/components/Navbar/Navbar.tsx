@@ -47,17 +47,6 @@ const Navbar = () => {
     {
       name: "Service",
       link: "/service",
-      isSubMenu: true,
-      subMenu: [
-        {
-          name: "Service",
-          link: "/service",
-        },
-        {
-          name: "Services Details",
-          link: "/services-details",
-        },
-      ],
     },
     {
       name: "Feedback",
@@ -94,21 +83,6 @@ const Navbar = () => {
       {/* appoinment */}
 
       <div className="flex gap-5 items-center w-full justify-end  ">
-        {/* emergengy call */}
-        <div className="hidden md:flex items-center gap-2 cursor-pointer ">
-          <PhoneTwoTone className="text-primary" />
-          <p>Emergency Call</p>
-        </div>
-
-        {/* apointment */}
-        <button
-          style={{
-            boxShadow: " 3px 3px 3px 0px rgba(109,40,217)",
-          }}
-          className=" hidden md:block appointmentButton"
-        >
-          Apointment{" "}
-        </button>
         {/* button and drower */}
         <>
           <button

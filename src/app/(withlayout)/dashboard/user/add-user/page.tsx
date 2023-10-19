@@ -46,7 +46,7 @@ const AddUserPage = () => {
       // @ts-ignore
       if (res?.data && !error) {
         message.success("Successfully Created User");
-        router.push("/dashboard/user-lists");
+        router.push("/dashboard/user/user-list");
       }
     } catch (error: any) {
       console.error(error?.data?.message);
@@ -82,7 +82,7 @@ const AddUserPage = () => {
             </p>
             <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
               <Col span={12} style={{ margin: "10px 0" }}>
-                <FormInput 
+                <FormInput
                   name="email"
                   label="Email"
                   type="email"

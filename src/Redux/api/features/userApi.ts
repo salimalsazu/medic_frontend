@@ -5,15 +5,16 @@ const USER_API = "/users";
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllUsers: build.query({
-      query: () => ({
+      query: (arg: Record<string, any>) => ({
         url: `${USER_API}`,
         method: "GET",
+        params: arg,
       }),
       providesTags: [tagTypes.user],
     }),
     updateUserInfo: build.mutation({
       query: ({ id, body }) => ({
-        url: `${USER_API}/${id}`,
+        url: `${USER_API}/update-profile/${id}`,
         method: "PATCH",
         data: body,
       }),

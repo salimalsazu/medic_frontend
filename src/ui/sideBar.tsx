@@ -40,11 +40,11 @@ const SideBar = ({ role }: { role: string }) => {
           fontWeight: "bold",
           marginBottom: ".5rem",
           padding: "10px 0px",
-          width: "100%",
-          margin: "0 auto",
+          marginLeft: "32px",
+          marginRight: "auto",
         }}
       >
-        U-Medic
+        {collapsed ? "UM" : "U-Medic"}
       </Link>
       <Menu
         theme="light"

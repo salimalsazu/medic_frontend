@@ -51,7 +51,7 @@ const page = () => {
                   initiatives. We are committed to promoting a healthier and
                   informed population. For inquiries or appointments, contact us
                   at [Insert Hospital Contact Number] or visit our website at
-                  [Insert Hospital Website]. We're available 24/7 to serve you
+                  [Insert Hospital Website]. We are available 24/7 to serve you
                   and your loved ones. Medic Hospital - Where Caring Meets
                   Healing.
                 </p>

@@ -15,7 +15,10 @@ import dayjs from "dayjs";
 import { Modal } from "antd";
 const { confirm } = Modal;
 import { ExclamationCircleFilled } from "@ant-design/icons";
-import { useGetAllUsersQuery, useUpdateUserInfoMutation } from "@/redux/api/features/userApi";
+import {
+  useGetAllUsersQuery,
+  useUpdateUserInfoMutation,
+} from "@/redux/api/features/userApi";
 import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import ActionBar from "@/ui/ActionBar";
 import TableList from "@/components/Table/TableList";
@@ -26,7 +29,6 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import { bloodGroup } from "@/constant/common";
 import UploadImage from "@/ui/UploadImage";
 import { getUserInfo } from "@/services/auth.services";
-
 
 const UserList = () => {
   const { userRole } = getUserInfo() as any;

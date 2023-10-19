@@ -49,7 +49,7 @@ const UploadImage = ({ name, defaultImage }: ImageUploadProps) => {
 
     try {
       const res: AxiosResponse = await axios.post(
-        `https://api.imgbb.com/1/upload?key=8576687a813b75f4d79dfe220f3daa61`,
+        `https://api.imgbb.com/1/upload?key=f04df4e1343869002a97bc435ec536f7`,
         fmData,
         config
       );
