@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useGetSingleServiceQuery } from "@/Redux/features/serviceApi/serviceApi";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { Button, Empty, Rate, Skeleton } from "antd";
 import React from "react";
@@ -9,16 +8,19 @@ import { Fragment } from "react";
 import { Tab } from "@headlessui/react";
 import Form from "@/components/Forms/Form";
 import FormTextArea from "@/components/Forms/FormTextArea";
-import { getUserInfo, isLoggedIn } from "@/services/auth.service";
+
 import { useRouter } from "next/navigation";
 import { Modal, message } from "antd";
 const { confirm } = Modal;
 import { ExclamationCircleFilled } from "@ant-design/icons";
-import FormRating from "@/components/Forms/FormRating";
-import { useCreateRatingMutation } from "@/Redux/features/RatingApi/RatingApi";
-import { useAppDispatch } from "@/Redux/hook";
-import { addToCart } from "@/Redux/features/addToCartSlice/addToCartSlice";
+
 import { IServiceTypes } from "@/types/Service";
+import { getUserInfo, isLoggedIn } from "@/services/auth.services";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { useCreateReviewMutation } from "@/redux/api/features/reviewApi";
+import { useGetSingleServiceQuery } from "@/redux/api/features/serviceApi";
+import FormRating from "@/components/Forms/FormRating";
 
 const faqs = [
   {
@@ -69,7 +71,7 @@ function classNames(...classes: any) {
 
 const ServiceDetails = ({ params }: any) => {
   const [createRating, { isLoading: reviewLoading }] =
-    useCreateRatingMutation();
+    useCreateReviewMutation();
   const dispatch = useAppDispatch();
   const userLoggedIn = isLoggedIn();
 
@@ -329,32 +331,6 @@ const ServiceDetails = ({ params }: any) => {
               </ul>
             </div>
           </div>
-
-          {/* Product details */}
-
-          {/* <div className="mt-10 border-t border-gray-200 pt-10">
-            <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-            <div className="prose prose-sm mt-4 text-gray-500">
-              <ul role="list">
-                {product.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
-            </div>
-          </div> */}
-
-          {/* <div className="mt-10 border-t border-gray-200 pt-10">
-            <h3 className="text-sm font-medium text-gray-900">License</h3>
-            <p className="mt-4 text-sm text-gray-500">
-              {license.summary}{" "}
-              <a
-                href={license.href}
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Read full license
-              </a>
-            </p>
-          </div> */}
         </div>
 
         <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">

@@ -14,7 +14,6 @@ import UMBreadCrumb from "@/ui/UMBreadCrumb";
 import ActionBar from "@/ui/ActionBar";
 import TableList from "@/components/Table/TableList";
 import {
-  useGetBookingQuery,
   useGetMyBookingQuery,
   useUpdateBookingMutation,
 } from "@/redux/api/features/bookingApi";
@@ -22,9 +21,6 @@ import FormSelectField from "@/components/Forms/FormSelectField";
 import FormInput from "@/components/Forms/FormInput";
 import ModalForm from "@/components/modal/modal";
 import Form from "@/components/Forms/Form";
-import { slot } from "@/constant/role";
-import { useGetSlotQuery } from "@/redux/api/features/slotApi";
-import { useGetServiceQuery } from "@/redux/api/features/serviceApi";
 
 const BookingList = () => {
   const query: Record<string, any> = {};
@@ -46,28 +42,6 @@ const BookingList = () => {
   // get data
   const { data, isLoading } = useGetMyBookingQuery({ ...query });
 
-  const { data: slotData, isLoading: slotLoading } = useGetSlotQuery({
-    ...query,
-  });
-
-  const { data: serviceData, isLoading: serviceLoading } = useGetServiceQuery({
-    ...query,
-  });
-
-  const deleteHandler = async (id: string) => {
-    //   message.loading("Deleting.....");
-    //   try {
-    //     //   console.log(data);
-    //     const res = await deleteCourse(id);
-    //     if (res) {
-    //       message.success("Course Deleted successfully");
-    //     }
-    //   } catch (err: any) {
-    //     //   console.error(err.message);
-    //     message.error(err.message);
-    //   }
-  };
-
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editData, setEditData] = useState<any>(null);
 
@@ -76,10 +50,13 @@ const BookingList = () => {
 
   const handleEdit = async (updated: any) => {
     const editedData = {
-      firstName: updated.profile.firstName,
-      contactNumber: updated.profile.contactNumber,
+      appointmentDate: updated.appointmentDate,
       appointmentStatus: updated.appointmentStatus,
+      slotId: updated.slot.slotId,
+      serviceId: updated.service.serviceId,
     };
+
+    console.log("editedData", editedData);
 
     const id = updated.appointmentId;
 
@@ -285,6 +262,7 @@ const BookingList = () => {
                       size="large"
                       name="profile.firstName"
                       label="Full Name"
+                      disabled
                     />
                   </div>
                 </Col>
@@ -294,6 +272,7 @@ const BookingList = () => {
                       size="large"
                       name="profile.contactNumber"
                       label="Contact No"
+                      disabled
                     />
                   </div>
                 </Col>
@@ -306,6 +285,38 @@ const BookingList = () => {
                         label: c.label,
                         value: c.value,
                       }))}
+                    />
+                  </div>
+                </Col>
+              </Row>
+              <Row gutter={{ xs: 24, xl: 24, lg: 24, md: 24 }}>
+                <Col span={8} style={{ margin: "10px 0" }}>
+                  <div style={{ margin: "10px 0px" }}>
+                    <FormInput
+                      size="large"
+                      name="service.serviceName"
+                      label="Service Name"
+                      disabled
+                    />
+                  </div>
+                </Col>
+                <Col span={8} style={{ margin: "10px 0" }}>
+                  <div style={{ margin: "10px 0px" }}>
+                    <FormInput
+                      size="large"
+                      name="slot.slotTime"
+                      label="Time Slot"
+                      disabled
+                    />
+                  </div>
+                </Col>
+                <Col span={8} style={{ margin: "10px 0" }}>
+                  <div style={{ margin: "10px 0px" }}>
+                    <FormInput
+                      size="large"
+                      name="appointmentDate"
+                      label="Appointment Date"
+                      disabled
                     />
                   </div>
                 </Col>

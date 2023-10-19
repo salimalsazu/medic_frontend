@@ -98,7 +98,7 @@ const LoginPage = () => {
               {/* already have account */}
               <div className="flex items-center justify-end mt-2">
                 <Link
-                  href="/sign-up"
+                  href="/register"
                   className="inline-flex items-center font-bold text-[#47177e] hover:text-blue-700 hover:underline text-xs text-center"
                 >
                   <span className="ml-2">Don&apos;t have account?</span>

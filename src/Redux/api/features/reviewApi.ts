@@ -26,7 +26,7 @@ const blogApi = baseApi.injectEndpoints({
         method: "POST",
         data: data,
       }),
-      invalidatesTags: [tagTypes.review],
+      invalidatesTags: [tagTypes.review, tagTypes.service],
     }),
     // update Review
     updateReview: builder.mutation({

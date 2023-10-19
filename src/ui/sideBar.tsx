@@ -40,6 +40,8 @@ const SideBar = ({ role }: { role: string }) => {
           fontWeight: "bold",
           marginBottom: ".5rem",
           padding: "10px 0px",
+          width: "100%",
+          margin: "0 auto",
         }}
       >
         U-Medic

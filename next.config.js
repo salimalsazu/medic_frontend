@@ -9,6 +9,7 @@ const nextConfig = {
       "i.ibb.co",
       "cdn.tailgrids.com",
       "tailus.io",
+      "truckeradvisor",
     ],
   },
 };
